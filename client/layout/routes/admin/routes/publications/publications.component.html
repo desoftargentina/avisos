@@ -1,0 +1,124 @@
+<div *ngIf="dataSource.loading | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="d-flex m-parent overflow-auto" [ngStyle]="{'height': contentHeight + 'px'}">
+  <div class="d-flex flex-column m-2 mt-4 mb-3 w-100">
+    <form class="d-flex flex-wrap" [formGroup]="filtersForm">
+      <div class="d-flex flex-column col p-0">
+        <div class="d-flex">
+          <mat-form-field class="col">
+            <input type="text" placeholder="Nombre" matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input type="text" placeholder="Publicador" matInput formControlName="publisher" />
+          </mat-form-field>
+          <mat-form-field class="col">
+            <mat-label>Divisa</mat-label>
+            <mat-select formControlName="currency" multiple>
+              <mat-option *ngFor="let currency of currencies" [value]="currency.id">{{ currency.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="d-flex">
+          <mat-form-field class="col">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="status" multiple>
+              <mat-option *ngFor="let state of states" [value]="state">{{ getStateName(state) }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <category-selector class="col p-0"></category-selector>
+        </div>
+      </div>
+      <div class="d-flex flex-column col p-0">
+        <div formGroupName="date" class="d-flex">
+          <mat-form-field class="col">
+            <input matInput [matDatepicker]="from" placeholder="Desde" formControlName="from" />
+            <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+            <mat-datepicker #from></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput [matDatepicker]="to" placeholder="Hasta" formControlName="to" />
+            <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+            <mat-datepicker #to></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div formGroupName="price" class="d-flex">
+          <mat-form-field class="col">
+            <span matPrefix>$ &nbsp;</span>
+            <input matInput placeholder="Desde" formControlName="from" pattern="[0-9]*" />
+          </mat-form-field>
+          <mat-form-field class="col">
+            <span matPrefix>$ &nbsp;</span>
+            <input matInput placeholder="Hasta" formControlName="to" pattern="[0-9]*" />
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+    <div class="overflow-auto mat-elevation-z3 mb-1" [ngStyle]="{'min-height': 'calc(' + contentHeight + 'px - 206px - 2em)'}">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="col"
+        matSort
+        matSortActive="date"
+        matSortDirection="desc"
+        matSortDisableClear
+      >
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let element">{{ element.date | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef>Hora</th>
+          <td mat-cell *matCellDef="let element">{{ element.date | date: 'HH:mm' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef #name>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="publisher">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Publicador</th>
+          <td mat-cell *matCellDef="let element">{{ element.publisher }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</th>
+          <td mat-cell *matCellDef="let element">{{ element.category.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="subcategory">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Subcategoría</th>
+          <td mat-cell *matCellDef="let element">{{ element.subcategory.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Duración</th>
+          <td mat-cell *matCellDef="let element">{{ element.duration }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    <mat-paginator
+      class="mat-elevation-z3"
+      [length]="dataSource.count | async"
+      pageSize="10"
+      [pageSizeOptions]="[5, 10, 25, 50]"
+    ></mat-paginator>
+    <div class="py-2"></div>
+  </div>
+</div>

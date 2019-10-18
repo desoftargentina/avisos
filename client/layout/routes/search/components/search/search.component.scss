@@ -1,0 +1,10 @@
+virtual-scroller {
+  height: 90vh;
+}
+
+preview {
+  flex: 0 0 calc(33.33333333% - 20px);
+  height: 440px;
+  margin: 10px;
+  border-radius: 5px;
+}

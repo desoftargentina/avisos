@@ -1,0 +1,110 @@
+<form class="d-flex flex-column mx-4" [formGroup]="publishForm" (ngSubmit)="onSubmit()" focusInvalid>
+  <!-- Config -->
+  <div class="col d-flex my-3">
+    <div class="col px-0 mx-3 d-flex flex-column">
+      <div class="d-flex mx-auto my-3">
+        <mat-divider vertical class="rounded-circle mr-3 color-inherit mat-color-accent-light"></mat-divider>
+        <h3 class="mat-color-primary-900"><b>Categorización</b></h3>
+        <mat-divider vertical class="rounded-circle ml-3 color-inherit mat-color-accent-light"></mat-divider>
+      </div>
+      <category-selector class="col px-0 pt-2 rounded-lg m-border mat-color-primary-dark" required></category-selector>
+    </div>
+    <div class="col px-0 mx-3 d-flex flex-column">
+      <div class="d-flex mx-auto my-3">
+        <mat-divider vertical class="rounded-circle mr-3 color-inherit mat-color-accent-light"></mat-divider>
+        <h3 class="mat-color-primary-900"><b>Ubicación</b></h3>
+        <mat-divider vertical class="rounded-circle ml-3 color-inherit mat-color-accent-light"></mat-divider>
+      </div>
+      <locator-form class="col px-0 pt-2 rounded-lg m-border mat-color-primary-dark" required></locator-form>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="col d-flex mb-2 mt-4">
+    <div class="col"></div>
+
+    <div class="col d-flex">
+      <mat-checkbox formControlName="condition" class="col pr-5 d-flex justify-content-end my-auto">Nuevo</mat-checkbox>
+
+      <mat-form-field class="col">
+        <mat-label>Duración</mat-label>
+        <mat-select formControlName="duration" required>
+          <mat-option *ngFor="let duration of durations" [value]="duration.duration">
+            {{ duration.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col d-flex my-2">
+    <mat-form-field class="col">
+      <input type="text" matInput placeholder="Título" formControlName="title" maxlength="64" minlength="6" required/>
+      <mat-hint *ngIf="controls.title.valid">Máximo de 64 caracteres.</mat-hint>
+      <mat-error *ngIf="controls.title.hasError('minlength')">Mínimo de 6 caracteres.</mat-error>
+      <mat-error *ngIf="controls.title.hasError('required')">Campo requerido.</mat-error>
+    </mat-form-field>
+
+    <div class="col d-flex">
+      <mat-form-field class="col">
+        <span matPrefix>$ &nbsp;</span>
+        <input type="number" placeholder="Precio" matInput formControlName="price" (keypress)="onlyNumberKey($event)" min="0" required/>
+        <mat-hint *ngIf="controls.price.valid">Solo números</mat-hint>
+        <mat-error *ngIf="controls.price.hasError('required')">Campo requerido.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col">
+        <mat-select placeholder="Moneda" formControlName="currency">
+          <mat-option *ngFor="let currencyId of currencyKeys" [value]="currencyId">
+            {{ getCurrency(currencyId).name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Editor -->
+  <div class="px-4 mt-2">
+    <textarea [froalaEditor]="editorOptions" formControlName="contents"></textarea>
+  </div>
+
+  <div class="col p-0 mb-4 d-flex flex-row-reverse position-relative">
+    <div class="position-absolute mx-3 text-truncate text-right" style="top: -2em; right: 10.5em; left: 1em">
+      <i class="mat-color-foreground-disabled" style="background-color: white">
+        Los avisos pueden demorar hasta <b class="mat-color-warn-dark">72 horas</b> en ser publicados
+      </i>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="col d-flex mb-4">
+    <mat-form-field class="col">
+      <input type="text" matInput disabled placeholder="Correo de Contacto" [value]="email" />
+      <mat-hint>Puedes editar el correo en tu perfil</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="col">
+      <span matPrefix>{{ countryCode }} &nbsp;</span>
+      <input type="text" matInput disabled placeholder="Teléfono" [value]="'(' + areaCode + ') ' + formatCellphone" />
+      <mat-hint>Puedes editar el número de teléfono en tu perfil</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <image-uploader (fileEvent)="fileEvent($event)" class="mb-5"></image-uploader>
+
+  <!-- Preview -->
+  <div class="px-4 my-2">
+    <div class="p-2 d-flex flex-column m-border rounded mat-color-foreground-disabled" style="min-height: 200px">
+      <h3 class="mx-auto mb-2 mat-color-primary-900"><b> Vista Previa </b></h3>
+      <mat-divider class="mx-3"></mat-divider>
+      <div [froalaView]="publishForm.get('contents').value" class="mat-color-foreground mx-3 my-2"></div>
+    </div>
+  </div>
+  <!-- Submit -->
+  <div class="col d-flex my-4">
+    <button type="submit" mat-flat-button color="primary" class="mx-auto py-1 ignore-custom">
+      <avisos-icon icon="pen-fancy" size="lg" class="mr-1"></avisos-icon>
+      <span style="font-size: 1.4em"> Publicar Aviso </span>
+    </button>
+  </div>
+</form>
+<div class="my-4 py-3"></div>

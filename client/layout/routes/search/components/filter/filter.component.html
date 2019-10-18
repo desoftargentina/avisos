@@ -1,0 +1,66 @@
+<div class="d-flex flex-column h-100" style="width:260px">
+  <!-- Tags -->
+  <mat-chip-list class="p-2 pt-3">
+    <mat-chip *ngFor="let tag of tags" selectable="false" removable="true" (removed)="removeTag(tag)">
+      <div class="text-truncate">
+        {{ tag.name }}
+      </div>
+      <avisos-icon icon="times" class="c-icon mr-1" matChipRemove></avisos-icon>
+    </mat-chip>
+  </mat-chip-list>
+  <!-- Generic Filters -->
+  <div class="col px-2 py-0 overflow-auto">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="w-100 bg-transparent">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding style="min-height: auto" class="pl-0">
+        <button mat-button class="w-100 text-left" (click)="redirect(node)" [ngClass]="{ 'm-line-4': node.thin }">
+          <span class="text-truncate d-block" style="width:90%"> {{ node.name }} </span>
+        </button>
+      </mat-tree-node>
+      <mat-tree-node
+        *matTreeNodeDef="let node; when: hasChild"
+        matTreeNodePadding
+        style="min-height: auto"
+        [ngClass]="{ 'mt-4': !node.first }"
+      >
+        <button mat-button class="w-100 rounded mat-bg-primary-300" matTreeNodeToggle>
+          <div class="d-flex align-items-center">
+            <span> {{ node.name }} </span>
+            <div class="col"></div>
+            <avisos-icon [icon]="treeControl.isExpanded(node) ? 'chevron-up' : 'chevron-down'"></avisos-icon>
+          </div>
+        </button>
+      </mat-tree-node>
+    </mat-tree>
+  </div>
+  <!-- Prices Section -->
+  <div class="mat-elevation-z3 mx-2 px-3 pt-1 mt-3 d-flex flex-column">
+    <h3 class="mx-auto">Precios</h3>
+    <!-- Price Recomendations -->
+    <div class="d-flex flex-column m-line-3">
+      <a class="pl-2 hoverable rounded-pill" selectable="true" *ngFor="let tag of priceTags" (click)="onPriceTag(tag)">
+        {{ tag.name }}
+      </a>
+    </div>
+    <!-- Prices Filters -->
+    <form [formGroup]="priceForm" (ngSubmit)="filterPrices()">
+      <div class="d-inline-flex">
+        <mat-form-field class="col p-0" hideRequiredMarker="true">
+          <input type="number" placeholder="Min" matInput formControlName="min" (keypress)="onlyNumberKey($event)">
+          <button *ngIf="prices['min'].value" matSuffix mat-icon-button aria-label="clear" (click)="prices['min'].reset()">
+            <avisos-icon icon="times"></avisos-icon>
+          </button>
+        </mat-form-field>
+        <h3 class="px-3 pb-1 my-auto">-</h3>
+        <mat-form-field class="col p-0" hideRequiredMarker="true">
+          <input type="number" placeholder="Max" matInput formControlName="max" (keypress)="onlyNumberKey($event)">
+          <button *ngIf="prices['max'].value" matSuffix mat-icon-button aria-label="clear" (click)="prices['max'].reset()">
+            <avisos-icon icon="times"></avisos-icon>
+          </button>
+        </mat-form-field>
+        <button class="bg-transparent" type="submit" aria-label="submit">
+          <avisos-icon icon="chevron-circle-right" size="lg"></avisos-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

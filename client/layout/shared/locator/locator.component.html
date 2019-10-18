@@ -1,0 +1,27 @@
+<div class="d-flex rounded-pill anim-background pl-3 pr-2 h-100" [ngClass]="background && 'mat-bg-background-hover-h'">
+  <div class="d-flex" *ngIf="global; else localized">
+    <avisos-icon fas icon="globe-americas" size="lg" class="mat-color-accent-700 my-auto"></avisos-icon>
+    <h5 class="mat-color-primary my-auto mx-2 location" (click)="redirect($event, Location.Global)">{{shorter ? 'Mundial' : 'Alcance Mundial'}}</h5>
+  </div>
+  <ng-template #localized>
+    <div class="d-flex" *ngIf="city && state && country">
+      <avisos-icon fas icon="map-marker-alt" [ngStyle]="{'font-size': (fontSize*1.12) + 'rem'}" class="mat-color-accent-700 my-auto"></avisos-icon>
+      <div class="d-flex mx-2 mat-color-primary" [ngStyle]="{'font-size': fontSize + 'rem'}">
+        <div *ngIf="vertical; else flat" class="d-flex flex-column mr-2">
+            <div class="location" (click)="redirect($event, Location.City)"><b>{{ city.name }}</b></div>
+            <div class="location" (click)="redirect($event, Location.State)"><b>{{ state.name }}</b></div>
+            <div class="location" (click)="redirect($event, Location.Country)"><b>{{ country.name }}</b></div>
+        </div>
+        <ng-template #flat>
+          <div class="my-auto d-flex">
+            <div class="location" (click)="redirect($event, Location.City)"><b>{{ city.name }}</b></div>
+            <div class="mat-color-foreground-disabled font-weight-bold mx-1">-</div>
+            <div class="location" (click)="redirect($event, Location.State)"><b>{{ state.name }}</b></div>
+            <div class="mat-color-foreground-disabled font-weight-bold mx-1">-</div>
+            <div class="location" (click)="redirect($event, Location.Country)"><b>{{ country.name }}</b></div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+</div>

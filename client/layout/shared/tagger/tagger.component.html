@@ -1,0 +1,5 @@
+<mat-chip class="w-100 cursor-pointer" [ngClass]="class" [matTooltip]="tooltip" (click)="redirect($event)">
+  <avisos-icon *ngIf="icon" [icon]="icon" size="lg"></avisos-icon>
+  <div class="mx-1"></div>
+  <div class="text-nowrap">{{ name }}</div>
+</mat-chip>

@@ -1,0 +1,29 @@
+<div class="d-flex" [ngStyle]="{ height: innerHeight + 'px' }">
+  <div *ngIf="loading; else loaded" class="h-100 d-flex">
+    <mat-spinner class="m-auto"></mat-spinner>
+  </div>
+  <ng-template #loaded>
+    <carousel class="w-100">
+      <carousel-item *ngFor="let path of imagePaths" [src]="'/storage/' + rootPath + '/' + path"></carousel-item>
+    </carousel>
+  </ng-template>
+</div>
+
+<!-- <div class="d-flex" [ngStyle]="{ height: innerHeight + 'px' }">
+  <div class="d-flex col" [ngClass]="fullscreen && 'fullscreen'">
+    <div
+      class="m-2 p-2 overflow-hidden w-100"
+      [ngClass]="!fullscreen && 'mat-bg-background-dark3'"
+      style="border-radius: 20px"
+    >
+      <div
+        class="overflow-hidden h-100"
+        [ngClass]="rootPath && imagePaths.length > 0 && (fullscreen ? 'cursor-out' : 'cursor-in')"
+        (click)="toggleFullscreen($event)"
+        style="border-radius: 30px"
+      >
+      
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,4 @@
+<div class="add-img clickable" title="Agregar Imagen" (click)="openSelector()">
+    <avisos-icon icon="plus" size="4x" class="m-auto add-img-icon color-icon"></avisos-icon>
+    <input type="file" accept=".png,.jpg,.jpeg" class="d-none" #fileInput (change)="onFile($event)">
+</div>

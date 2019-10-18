@@ -1,0 +1,28 @@
+<div [ngSwitch]="templates.length" class="h-100 p-2">
+    <avisos-img class="w-100 h-100 img-fit" [asset]="not_found" *ngSwitchCase="0"></avisos-img>
+    <div class="d-flex flex-column h-100" *ngSwitchCase="1">
+        <div class="img-fit d-flex flex-column my-auto">
+            <ng-container *ngTemplateOutlet="templates[0]"></ng-container>
+        </div>
+    </div>
+    <div class="d-flex flex-column h-100" *ngSwitchDefault>
+        <div class="img-fit w-img d-flex flex-column">
+            <img [src]="activeSrc" class="w-100 m-auto" [ngStyle]="{'border-radius': '1em'}" />
+        </div>
+        <div class="d-flex mx-auto w-selector">
+            <avisos-icon icon="circle" *ngFor="let _ of items; let i = index"
+                [ngClass]="i === active ? 'color-icon' : 'color-icon-disabled'" class="clickable hoverable"
+                (click)="select(i)">
+            </avisos-icon>
+        </div>
+        <div class="d-flex overflow-hidden w-preview" #preview>
+            <div class="d-flex flex-column mx-2" *ngFor="let temp of templates; let i = index">
+                <div class="m-border w-100 m-auto img-preview clickable position-relative" (click)="select(i)">
+                    <ng-container *ngTemplateOutlet="temp"></ng-container>
+                    <div class="panel-disabled" [ngStyle]="(i === active) && {'opacity': '0'}"></div>
+                    <div class="back-hoverable position-absolute w-100 h-100" [ngStyle]="{'top':'0'}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

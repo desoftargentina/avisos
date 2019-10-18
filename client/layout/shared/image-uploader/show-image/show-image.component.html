@@ -1,0 +1,20 @@
+<div class="img-preview position-relative" [title]="filename">
+    <img [src]="url" *ngIf="url; else loading">
+    <ng-template #loading>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+
+    <div class="position-absolute w-100 h-100 d-flex flex-column-reverse" *ngIf="percentage; else done">
+        <mat-progress-bar mode="determinate" [value]="percentage" class="mb-2 ml-1" style="height:12px">
+        </mat-progress-bar>
+    </div>
+    <ng-template #done>
+        <div class="w-100 h-100 d-flex position-absolute">
+            <avisos-icon icon="check" size="lg" class="m-1 mt-auto ml-auto color-icon"></avisos-icon>
+        </div>
+    </ng-template>
+
+    <button mat-mini-fab class="very-clickable position-absolute mx-1" title="" matTooltip="Eliminar" (click)="delete()">
+        <avisos-icon icon="trash-alt" size="lg" class="color-contrast"></avisos-icon>
+    </button>
+</div>

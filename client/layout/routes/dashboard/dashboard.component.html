@@ -1,0 +1,27 @@
+<div class="d-flex flex-column" [ngStyle]="contentFits() && {'height': '100%'}">
+  <div class="mt-5 mat-elevation-z4 mat-bg-background-dark3" style="z-index:1">
+    <div class="container d-flex" [ngStyle]="mobile() && { 'min-height': '350px' }">
+      <div class="d-flex col align-items-center flex-column flex-sm-row p-0 px-sm-0 p{{ i == 1 ? 'r' : 'l' }}-4" *ngFor="let i of [1, 2]">
+        <button *ngFor="let category of categories.slice(2 * i - 2, 2 * i)" class="rounded-0 col py-3 mat-color-warn-h" [routerLink]="['/search']" [queryParams]="{ category: category.id }" mat-button>
+          <avisos-icon [icon]="category.icon" size="5x"></avisos-icon>
+          <div class="d-flex flex-column align-items-center col m-line-3 mt-3">
+            <span class="row"><b>{{ category.name }}</b></span>
+            <span class="row">Some text</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="overflow-auto">
+    <div class="py-1 mb-4 mt-5">
+      <div class="container myGrid">
+        <button *ngFor="let category of categories.slice(4)" class="myButton d-flex-inline" [routerLink]="['/search']" [queryParams]="{ category: category.id }" mat-button>
+          <div class="d-flex flex-column">
+            <avisos-icon [icon]="category.icon" size="2x" class="myIcon"></avisos-icon>
+            <span class="pt-2 w-auto m-line-3 text-wrap">{{category.name}}</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

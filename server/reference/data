@@ -1,0 +1,55 @@
+CAUTION: The following assumes a Little-Endian notation
+
+Glossary:
+  - Cycle:
+    The basic unit of time of the server.
+    A cycle is defined as the number of hours elapsed since epoch, without considering leap seconds
+
+Users Section
+  Genre:
+   0 - Female
+   1 - Male
+
+  Levels:
+    0 - Admin
+    1 - Normal
+
+    2 - VIP
+
+  GPS:
+    A gps number has the following binary format:
+      CCCCCCCC CCSSSSSS SSSSSScc cccccccc
+    Where C stands for Country, S for State and c for City
+
+  Status:
+    The status char is interpreted as 8 separated booleans as follows:
+      0000 0TVI
+
+      I: Indicates if the user was migrated from an old system
+      V: Indicates if user's email has been validated
+      T: Indicates if the user is marked as trusted
+
+Publications:
+  Status:
+    0000 0000 0000 0000 0000 0000 0VVG MWDI
+
+    I: Indicates if the publication was migrated from an old system
+    D: Trending Daily
+    W: Trending Weekly
+    M: Trending Monthly
+    G: Trending Global
+    V: Visibility
+    - Visibilities:
+      * 00: Pending Approvation
+      * 01: Normal
+      * 10: Paused
+      * 11: Finished
+
+  Data File:
+    This file contains internal registers used to calculate trendings and prevent repeated views
+
+    Structure:
+    {
+      views: number[]; // List of all user's ids who saw the publication
+      visits: {[cycle: number]: number[]} // List of user's ids who saw the publication by cycle
+    }

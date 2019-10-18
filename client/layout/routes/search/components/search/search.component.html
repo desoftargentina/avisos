@@ -1,0 +1,12 @@
+<div class="h-100">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+  <div class="d-flex">
+    <filter></filter>
+    <div class="col p-0">
+      <virtual-scroller [items]="buffer" (vsUpdate)="items = $event" (vsEnd)="fetchMore($event)">
+          <preview *ngFor="let item of items" [data]="item" class="mat-bg-background hoverable overflow-hidden cursor-pointer" [routerLink]="getUrl(item)"></preview>
+        <div *ngIf="closed">End of List</div>
+      </virtual-scroller>
+    </div>
+  </div>
+</div>

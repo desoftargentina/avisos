@@ -1,0 +1,1 @@
+export const durations = [30, 45, 60];

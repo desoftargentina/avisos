@@ -1,0 +1,53 @@
+@import '~@angular/material/theming';
+@import 'palette';
+
+@mixin custom-base($theme, $dark: false) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  body { background-color : mat-color($background, disabled-button-toggle) !important }
+  mat-sidenav-container { background-color : mat-color($background, disabled-button-toggle) !important }
+
+  .mat-dark-toggle.mat-checked .mat-slide-toggle-bar { background-color: mat-color($background, app-bar) }
+  
+  .ng-invalid button:not(.ignore-custom) {
+    color: mat-color($foreground, disabled-button)
+  }
+  
+  a {
+    color: mat-color($foreground, text);
+    &:hover {color: mat-color($foreground, text) }
+  }
+
+  .add-img, .img-preview {
+    border-color: mat-color($foreground, divider);
+    &:hover { background-color: mat-color($background, hover) }
+  }
+
+  .color-icon { color: mat-color($foreground, icon) }
+  .color-icon-disabled { color: mat-color($foreground, disabled-button) }
+
+  .hoverable:hover { color: adjust-color(mat-color($foreground, icon), $alpha: 0.1) }
+  .back-hoverable:hover { background-color: adjust-color(mat-color($background, hover), $alpha: 0.2) }
+  
+  .img-preview button.mat-mini-fab { background-color: mat-color($foreground, icon) }
+  .panel-disabled { background-color: rgba(mat-color($background, card), 0.4) }
+}
+
+@mixin custom-theme($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+  .color-contrast { color: mat-color($primary, default-contrast) }
+  .color-primary { color: mat-color($primary, default) }
+
+  .mat-dark-toggle.mat-checked .mat-slide-toggle-thumb { background-color: mat-color($warn, 300) }
+
+  .btn-bordered {
+    color: mat-color($primary, default) !important;
+    border: 2px solid mat-color($primary, default) !important;
+  }
+
+  .add-img:hover .add-img-icon { color: mat-color($primary, 400) }
+
+}

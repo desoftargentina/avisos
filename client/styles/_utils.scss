@@ -1,0 +1,220 @@
+// Make Material Icon look like being inside a button
+.b-icon {
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px;
+  text-align: center;
+}
+
+// Icon for material chipts
+.c-icon {
+  text-align: center;
+  line-height: 18px;
+}
+
+.img-fit {
+  object-fit: contain;
+}
+
+mdb-carousel {
+  .carousel-control-prev,
+  .carousel-control-next {
+    span {
+      opacity: 0 !important;
+    }
+    &:hover {
+      background-color: rgba(black, 0.1);
+    }
+  }
+}
+
+mdb-carousel .carousel-control-next {
+  cursor: url('/assets/next.png') 7 7, auto;
+}
+mdb-carousel .carousel-control-prev {
+  cursor: url('/assets/prev.png') 7 7, auto;
+}
+
+.black,
+.fullscreen {
+  mdb-carousel {
+    .carousel-control-prev,
+    .carousel-control-next {
+      span {
+        opacity: 0 !important;
+      }
+      &:hover {
+        background-color: rgba(white, 0.1);
+      }
+    }
+  }
+
+  mdb-carousel .carousel-control-next {
+    cursor: url('/assets/next_white.png') 7 7, auto;
+  }
+  mdb-carousel .carousel-control-prev {
+    cursor: url('/assets/prev_white.png') 7 7, auto;
+  }
+}
+.bg-transparent {
+  background-color: transparent;
+}
+
+.fix-icon avisos-icon {
+  padding: 0 0.5em;
+}
+
+.cursor-in {
+  cursor: zoom-in;
+}
+.cursor-out {
+  cursor: zoom-out;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.bread-thin .breadcrumb {
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.carousel,
+.carousel-inner {
+  height: 100%;
+}
+
+.mat-no-ripple.mat-no-ripple.mat-no-ripple .mat-ripple.mat-ripple .mat-ripple-element {
+  background-color: transparent;
+}
+
+mat-sidenav-container,
+.mat-sidenav-content,
+.mat-tab-body-content {
+  transform: none !important;
+}
+mat-tree-node {
+  min-height: 0;
+}
+
+*:focus {
+  outline: 0 !important;
+}
+
+button {
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.breadcrumb {
+  background: transparent !important;
+}
+
+.mat-button {
+  font-weight: normal;
+}
+.mat-divider-vertical.color-inherit {
+  border-color: inherit;
+}
+.mat-tooltip.md { font-size: 1.2em }
+
+.scrollable-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+tr th.mat-header-cell {
+  padding-right: 4em;
+}
+
+.mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+  width: 140px;
+}
+/*
+mat-form-field {
+  min-width: auto !important;
+  .mat-form-field-infix :not(.mat-select) :not(.mat-form-field-label-wrapper) {
+    width: auto;
+  }
+}*/
+
+.fullscreen {
+  background-color: rgba(black, 0.85);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.m-line-1 {
+  line-height: 1.1 !important;
+}
+.m-line-2 {
+  line-height: 1.3 !important;
+}
+.m-line-3 {
+  line-height: 1.5 !important;
+}
+.m-line-4 {
+  line-height: 1.7 !important;
+}
+
+.m-height-md {
+  height: 1.4em;
+}
+
+.m-border {
+  border: 2px solid currentColor;
+}
+
+.anim-all {
+  transition: all 0.3s;
+}
+.anim-background {
+  transition: background 0.3s;
+}
+.anim-color {
+  transition: color 0s 0.13s;
+}
+
+.m-rounded-right {
+  border-radius: 0 80px 80px 0 !important;
+}
+
+.ng-invalid button:not(.ignore-custom):hover { cursor: default }
+
+a:hover { text-decoration: none }
+
+.btn-bordered {
+  padding: 2px 0 !important;
+  border-radius: 10em !important;
+}
+
+.img-preview { cursor: zoom-in }
+
+.clickable { cursor: pointer }
+.very-clickable.very-clickable.very-clickable.very-clickable.very-clickable { cursor: pointer }
+.hoverable { transition: color 0.5s }
+.back-hoverable { transition: background-color 0.5s }
+.panel-disabled {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  transition: opacity 0.6s;
+}

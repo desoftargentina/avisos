@@ -1,0 +1,9 @@
+<div [ngClass]="isDark ? [themeLabel + '-theme', 'dark'] : [themeLabel + '-theme']">
+  <app-header [sidenav]="sidenav" #header class="d-block"></app-header>
+  <mat-sidenav-container [ngStyle]="{'height': 'calc(100vh - ' + headerHeight + 'px)'}">
+    <mat-sidenav #sidenav mode="over" class="pl-3 pr-4 mat-elevation-z4" [fixedInViewport]="true" [fixedTopGap]="headerHeight">
+      <app-sidebar [sidenav]="sidenav"></app-sidebar>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>
+</div>

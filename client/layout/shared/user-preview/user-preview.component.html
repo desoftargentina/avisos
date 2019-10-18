@@ -1,0 +1,37 @@
+<div
+  class="d-flex position-relative cursor-pointer holder"
+  routerLink="/user"
+  [queryParams]="{ id: id }"
+  [ngClass]="direction === 'left' && 'rtl'"
+>
+  <div class="rounded-circle overflow-hidden expand-partner m-auto d-flex" [ngClass]="!expandable && 'hoverable'" #card>
+    <img
+      src="{{ storage }}/{{ userID }}/profile"
+      *ngIf="hasPicture; else defProfile"
+      class="w-100 h-100 img-fit"
+      [alt]="name"
+      (error)="hasPicture = false"
+    />
+    <ng-template #defProfile>
+      <avisos-icon fas icon="user" size="5x" class="rounded-circle overflow-hidden m-auto"></avisos-icon>
+    </ng-template>
+  </div>
+  <div class="expand-card" [ngClass]="expandable && 'active hoverable'">
+    <div class="card-content flex-column">
+      <h3 class="mx-auto my-0">{{ name }}</h3>
+      <div class="d-flex">
+        <div class="d-flex flex-column my-auto">
+          <mat-chip-list class="p-0">
+            <tagger *ngFor="let tag of tags" [tag]="tag"></tagger>
+          </mat-chip-list>
+          <div>
+            <avisos-icon fas icon="eye" size="lg" class="mr-2"></avisos-icon>
+            {{ publications }} publicaciones
+          </div>
+        </div>
+        <div class="col"></div>
+        <locator [gps]="gps" size="0.75" no-background shorter vertical></locator>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<img src="{{storage}}/{{data.user}}/{{data.id}}/thumbnail" class="w-100 h-75 img-fit" alt="Image not found" (error)="goDefault($event)">
+<div class="d-flex flex-column h-25 px-3 pb-3">
+  <div class="col"></div>
+  <h4 class="text-truncate d-block pb-2 m-0 w-100 text-center">
+    {{ data.name }}
+  </h4>
+  <h3 class="mx-auto mat-color-primary-dark m-0 font-weight-bold">
+    $ {{ data.price }}
+  </h3>
+</div>

@@ -1,0 +1,60 @@
+@import "utils";
+@import "responsive";
+
+@import '~@angular/material/theming';
+@import 'palette';
+@import 'theme';
+@import 'froala-theme';
+
+$primary: mat-palette($default-primary);
+$accent:  mat-palette($default-accent, 400, 200, 600);
+$default-theme: mat-light-theme($primary, $accent);
+$default-dark-theme: mat-dark-theme($primary, $accent);
+
+$themes: (
+  argentina: (
+    light: mat-light-theme(mat-palette($argentina-primary), $accent),
+    dark: mat-dark-theme(mat-palette($argentina-primary), $accent),
+    ),
+  cuba: (
+    light: mat-light-theme(mat-palette($cuba-primary), $accent),
+    dark: mat-dark-theme(mat-palette($cuba-primary), $accent),
+    ),
+);
+
+@mixin create-theme($theme) {
+  @include froala-material-theme($theme);
+  @include angular-material-theme($theme);
+  @include custom-theme($theme);
+}
+
+@function get-color-value($theme, $color, $value) {
+  @return mat-color(map-get($theme, $color), $value);
+}
+
+@mixin expand-theme($property, $color, $value, $style) {
+  #{$style} { #{$property}: get-color-value($default-theme, $color, $value) }
+  .dark#{$style}, :host-context(.dark) #{$style} { #{$property}: get-color-value($default-dark-theme, $color, $value) }
+  @each $theme, $data in $themes {
+    :host-context(.#{$theme}-theme) #{$style} { #{$property}: get-color-value(map-get($data, light), $color, $value) }
+    .#{$theme}-theme#{$style} { #{$property}: get-color-value(map-get($data, light), $color, $value) }
+
+    :host-context(.#{$theme}-theme.dark) #{$style} { #{$property}: get-color-value(map-get($data, dark), $color, $value) }
+    .#{$theme}-theme.dark#{$style} {#{$property}: get-color-value(map-get($data, dark), $color, $value) }
+  }
+}
+
+@include mat-core();
+
+@include create-theme($default-theme);
+.dark { @include create-theme($default-dark-theme) }
+
+@each $theme, $data in $themes {
+  .#{$theme}-theme {
+    @include create-theme(map-get($data, light));
+    &.dark { @include create-theme(map-get($data, dark)) }
+  }
+}
+
+@include custom-base($default-theme);
+.dark { @include custom-base($default-dark-theme, true) }

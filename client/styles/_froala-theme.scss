@@ -1,0 +1,78 @@
+@import '~@angular/material/theming';
+@import 'palette';
+
+@mixin froala-material-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .gray-theme,
+  .dark-theme,
+  .royal-theme,
+  * {
+    &.fr-box {
+      a.fr-floating-btn { color: mat-color($primary, default) }
+      a.fr-floating-btn svg { fill: mat-color($primary, default) }
+      a.fr-floating-btn:hover svg { fill: mat-color($primary, default) }
+      .fr-video-resizer { border: solid 1px mat-color($primary, default) }
+      .fr-video-resizer .fr-handler { background: mat-color($primary, default) }
+      .fr-embedly-resizer { border: solid 1px mat-color($primary, default) }
+      // The next line hides the licence warning
+      .fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper.fr-wrapper div a { display: none !important }
+    }
+    &.fr-modal {
+      .fr-modal-head .fr-modal-tags a.fr-selected-tag { color: mat-color($primary, default) }
+      .fr-modal-wrapper div.fr-modal-body button.fr-command { color: mat-color($primary, default) }
+      .fr-modal-wrapper div.fr-modal-body button.fr-command:hover,
+      .fr-modal-wrapper div.fr-modal-body button.fr-command:focus { color: mat-color($primary, default) }
+      .fr-modal-wrapper div.fr-modal-body button.fr-command:active { color: mat-color($primary, default) }
+    }
+    &.fr-popup {
+      .fr-file-upload-layer.fr-drop { border-color: mat-color($primary, default) }
+      .fr-file-progress-bar-layer > div.fr-loader span { background: mat-color($primary, default) }
+      .fr-image-upload-layer.fr-drop { border-color: mat-color($primary, default) }
+      .fr-image-progress-bar-layer > div.fr-loader span { background: mat-color($primary, default) }
+      .fr-table-size .fr-select-table-size > span.hover > span { border: solid 1px mat-color($primary, default) }
+      .fr-video-upload-layer.fr-drop { border-color: mat-color($primary, default) }
+      .fr-action-buttons button.fr-command:hover,
+      .fr-action-buttons button.fr-command:focus { color: mat-color($primary, default) }
+      .fr-checkbox input:checked + span {
+        background: mat-color($primary, default);
+        border: solid 2px mat-color($primary, default)
+      }
+      .fr-input-line input[type='text']:focus,
+      .fr-input-line textarea:focus { border: solid 2px mat-color($primary, default) }
+      .fr-action-buttons button.fr-command { color: mat-color($primary, default) }
+      .fr-action-buttons button.fr-command:active { color: mat-color($primary, default) }
+      .fr-video-progress-bar-layer > div.fr-loader span { background: mat-color($primary, default) }
+    }
+    &.fr-show-tags {
+      .fr-modal-more svg path { fill: mat-color($primary, default) }
+    }
+    .fr-drag-helper { background: mat-color($primary, default) }
+    .fr-image-resizer { border: solid 1px mat-color($primary, default) }
+    .fr-image-resizer .fr-handler { background: mat-color($primary, default) }
+    .fr-table-resizer div { border-right: 1px solid mat-color($primary, default) }
+
+    .fr-toolbar .fr-btn-grp .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-toolbar .fr-more-toolbar .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-toolbar .fr-buttons:not(.fr-tabs) .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-popup .fr-btn-grp .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-popup .fr-more-toolbar .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-popup .fr-buttons:not(.fr-tabs) .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-modal .fr-btn-grp .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-modal .fr-more-toolbar .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path,
+    .fr-modal .fr-buttons:not(.fr-tabs) .fr-command.fr-btn.fr-active:not(.fr-dropdown) svg path {
+      fill: mat-color($primary, default)
+    }
+
+    .fr-element table td.fr-selected-cell,
+    .fr-element table th.fr-selected-cell { border: 1px double mat-color($primary, default) }
+    .fr-line-breaker { border-top: 1px solid mat-color($primary, default) }
+
+    div.fr-modal-body div.fr-image-list div.fr-image-container .fr-insert-img { fill: mat-color($primary, default) }
+
+    #logo:hover > span,
+    #logo:focus > span { color: mat-color($primary, default) }
+    #logo:hover > svg .fr-logo,
+    #logo:focus > svg .fr-logo { fill: mat-color($primary, default) }
+  }
+}

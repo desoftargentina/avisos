@@ -1,0 +1,191 @@
+$default-primary: (
+    50 : #efece6,
+    100 : #d8d0c1,
+    200 : #beb098,
+    300 : #a3906e,
+    400 : #90794f,
+    500 : #7c6130,
+    600 : #74592b,
+    700 : #694f24,
+    800 : #5f451e,
+    900 : #4c3313,
+    A100 : #ffc787,
+    A200 : #ffaf54,
+    A400 : #ff9721,
+    A700 : #ff8b08,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$argentina-primary: (
+  50: #e1eff8,
+  100: #b3d7ed,
+  200: #81bce1,
+  300: #4fa1d5,
+  400: #298dcc,
+  500: #0379c3,
+  600: #0371bd,
+  700: #0266b5,
+  800: #025cae,
+  900: #0149a1,
+  A100: #cbdfff,
+  A200: #98bfff,
+  A400: #65a0ff,
+  A700: #4c90ff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$cuba-primary: (
+  50 : #e7f3e9,
+    100 : #c3e1c9,
+    200 : #9bcda5,
+    300 : #73b881,
+    400 : #55a966,
+    500 : #379a4b,
+    600 : #319244,
+    700 : #2a883b,
+    800 : #237e33,
+    900 : #166c23,
+    A100 : #a5ffb1,
+    A200 : #72ff85,
+    A400 : #3fff59,
+    A700 : #25ff43,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$default-accent: (
+  50 : #fff4e0,
+  100 : #ffe4b3,
+  200 : #ffd280,
+  300 : #ffc04d,
+  400 : #ffb326,
+  500 : #ffa500,
+  600 : #ff9d00,
+  700 : #ff9300,
+  800 : #ff8a00,
+  900 : #ff7900,
+  A100 : #ffffff,
+  A200 : #fff8f2,
+  A400 : #ffdabf,
+  A700 : #ffcba6,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+// Attempt to make configuration easier. WIP
+// /*$profile-default: (
+//   primary: #cfaf73,
+//   accent: #ffb326
+// );
+
+// $profiles_: (
+//   argentina: (
+//     primary: #298dcc
+//   ),
+//   cuba: (
+//     primary: #55a966
+//   ),
+//   );
+
+// $palettes: ();
+
+// $stage-1: (
+//   300: (
+//     value: 17/3,
+//     target: 400,
+//     ),
+//   200: (
+//     value: 17/4,
+//     target: 300,
+//     ),
+//   100: (
+//     value: 17/4,
+//     target: 200,
+//     ),
+//   50: (
+//     value: 43/9,
+//     target: 100,
+//     ),
+// );
+
+// @each $profile, $settings in $profiles_ {
+//   $colors: ();
+//   @each $color in $settings {
+//     $palette_: ();
+//     @each $step, $data in $stage-1 {
+//       @include map-merge($palette_, (
+//         red: calc(map-get(map-get($palette_, map-get($data, target)), red) + red($color) / map-get($data, value)),
+//         green: calc(map-get(map-get($palette_, map-get($data, target)), green) + green($color) / map-get($data, value)),
+//         blue: calc(map-get(map-get($palette_, map-get($data, target)), blue) + blue($color) / map-get($data, value)),
+//       ))
+//     }
+
+//     $palette: ();
+//     @each $value, $data in $palette_ {
+//       @include map-merge($palette, (#{$value}: rgb(map-get($data, red), map-get($data, green), map-get($data, blue))));
+//     }
+
+//     @include map-merge($colors, (#{$color}: $palette));
+//   }
+
+//   @include map-merge($palettes, (#{$profile}: $colors));
+// }
+// */

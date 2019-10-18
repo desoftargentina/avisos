@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="mat-elevation-z6 d-flex">
+  <div class="col h-100 d-flex pl-5 mx-5 align-items-center">
+    <a routerLink="" class="h-100">
+      <img class="navbar-brand" [src]="logo" (error)="defaultLogo($event)" [ngStyle]="{ height: '95%' }" />
+    </a>
+    <avisos-search class="col"></avisos-search>
+    <div class="d-none d-lg-block">
+      <div class="d-inline-flex" *ngIf="loggedIn; else notLogged">
+        <button mat-button [matMenuTriggerFor]="userMenu">{{username}}</button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item routerLink="/user">Ver perfil</button>
+          <button mat-menu-item routerLink="/admin" *ngIf="isAdmin">Administrar</button>
+          <button mat-menu-item routerLink="/user/publications">Mis Publicaciones</button>
+          <button mat-menu-item routerLink="/user/password">Cambiar Contraseña</button>
+          <button mat-menu-item (click)="closeSession()">Cerrar sesión</button>
+        </mat-menu>
+      </div>
+      <ng-template #notLogged>
+        <div class="d-inline-flex">
+          <button mat-button routerLink="/register">Registrarme</button>
+          <mat-divider [vertical]="true"></mat-divider>
+          <button mat-button routerLink="/login">Ingresar</button>
+        </div>
+      </ng-template>
+      <button mat-flat-button color="accent" routerLink="/publish" class="ml-3">Publicar</button>
+    </div>
+    <button class="d-lg-none ml-3" mat-icon-button (click)="sidenav.toggle()">
+      <avisos-icon icon="bars"></avisos-icon>
+    </button>
+    <mat-slide-toggle class="mat-dark-toggle mat-no-ripple mx-3" (change)="nightModeToggle()">
+      <avisos-icon icon="moon" class="mx-1" *ngIf="isDark; else dayLight"></avisos-icon>
+      <ng-template #dayLight>
+        <avisos-icon icon="sun" class="mx-1"></avisos-icon>
+      </ng-template>
+    </mat-slide-toggle>
+  </div>
+</mat-toolbar>

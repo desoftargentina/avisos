@@ -1,0 +1,29 @@
+<div [formGroup]="locatorForm" class="d-flex">
+  <mat-form-field class="col pb-1">
+    <mat-label>País</mat-label>
+    <mat-select formControlName="country" [required]="required">
+      <mat-option *ngFor="let countryId of countryKeys" [value]="countryId">
+        {{getCountry(countryId).name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Campo obligatorio.</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col pb-1">
+    <mat-label>Provincia</mat-label>
+    <mat-select formControlName="state" [required]="required">
+      <mat-option *ngFor="let stateId of stateKeys" [value]="stateId">
+        {{getState(stateId).name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Campo obligatorio.</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col pb-1">
+    <mat-label>Ciudad</mat-label>
+    <mat-select formControlName="city" [required]="required">
+      <mat-option *ngFor="let cityId of cityKeys" [value]="cityId">
+        {{getCity(cityId).name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Campo obligatorio.</mat-error>
+  </mat-form-field>
+</div>

@@ -1,0 +1,21 @@
+<form class="mat-bg-background d-flex rounded-pill" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <input class="col bg-transparent border-0 mat-color-foreground-disabled-p" type="text" placeholder="Buscar" [matAutocomplete]="auto" formControlName="box">
+    <mat-divider class="my-2 rounded" [vertical]="true"></mat-divider>
+    <button class="m-rounded-right mat-color-foreground" mat-icon-button><avisos-icon icon="search"></avisos-icon></button>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of localFilter | async" [value]="option" class="col d-flex">
+        <div class="d-flex col px-0">
+          <avisos-icon icon="clock" class="my-auto"></avisos-icon>
+          <mat-divider [vertical]="true"></mat-divider>
+          <span class="col text-nowrap align-self-center"> {{ option }} </span>
+        </div>
+      </mat-option>
+      <mat-option *ngFor="let option of asyncFilter | async" [value]="option" class="col d-flex">
+        <div class="d-flex col px-0">
+          <avisos-icon icon="search" class="my-auto"></avisos-icon>
+          <mat-divider [vertical]="true"></mat-divider>
+          <span class="col text-nowrap align-self-center"> {{ option }} </span>
+        </div>
+      </mat-option>
+  </mat-autocomplete>
+</form>

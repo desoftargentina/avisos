@@ -1,0 +1,79 @@
+<div class="d-flex w-100 h-100">
+  <div class="m-auto z-depth-3" style="max-width: 80vw;">
+    <div class="d-flex" style="height:3em">
+      <button mat-flat-button class="bg-transparent w-100 rounded-0" routerLink="/login">Iniciar Sesión</button>
+      <button mat-flat-button color="primary" class="w-100 rounded-0">Crear Cuenta</button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="d-flex flex-column">
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <div class="py-1"></div>
+      <div class="w-100 d-flex">
+        <div class="d-flex col">
+          <mat-chip-list class="mx-auto">
+            <mat-chip class="w-100 cursor-pointer px-3" (click)="googleSignIn()">
+              <img
+                class="m-height-md mr-2"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              />
+              <span class="text-nowrap"> Entrar con Google </span>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="d-flex col">
+          <mat-chip-list class="mx-auto">
+            <mat-chip class="w-100 cursor-pointer px-3" (click)="facebookSignIn()">
+              <img class="m-height-md mr-2" src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg" />
+              <span class="text-nowrap"> Entrar con Facebook </span>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+    <div class="my-1"></div>
+    <div class="d-flex col" style="min-height:200px">
+      <form
+        id="regForm"
+        class="w-100 d-flex flex-column px-2 my-auto"
+        [formGroup]="registerForm"
+        (ngSubmit)="onRegister()"
+      >
+      <div class="d-flex">
+        <mat-form-field class="col pl-0">
+          <span matPrefix class="mr-3"><avisos-icon icon="user" size="lg"></avisos-icon></span>
+          <input type="text" placeholder="Nombre" matInput formControlName="firstname" />
+          <mat-error *ngIf="firstname.enabled && firstname.hasError('required')"> Campo <b>requerido</b> </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col pr-0">
+          <input type="text" placeholder="Apellido" matInput formControlName="lastname" />
+          <mat-error *ngIf="lastname.enabled && lastname.hasError('required')"> Campo <b>requerido</b> </mat-error>
+        </mat-form-field>
+      </div>
+        <mat-form-field>
+          <span matPrefix class="mr-3"><avisos-icon icon="envelope" size="lg"></avisos-icon></span>
+          <input type="text" placeholder="Correo" matInput formControlName="mail" />
+          <mat-error *ngIf="mail.enabled && mail.hasError('required')"> Campo <b>requerido</b> </mat-error>
+          <mat-error *ngIf="mail.enabled && mail.hasError('usedMail')"> El correo ya existe </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <span matPrefix class="mr-3"><avisos-icon icon="lock" size="lg"></avisos-icon></span>
+          <input type="password" placeholder="Contraseña" matInput formControlName="pass" />
+          <mat-error *ngIf="pass.enabled && pass.hasError('required')"> Campo <b>requerido</b> </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <span matPrefix class="mr-3"><avisos-icon icon="lock" size="lg"></avisos-icon></span>
+          <input type="password" placeholder="Repetir Contraseña" matInput formControlName="pass_rep" />
+          <mat-error *ngIf="pass_rep.enabled && pass_rep.hasError('required')"> Campo <b>requerido</b> </mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="cred_hold" class="m-auto">Mantener sesión iniciada</mat-checkbox>
+      </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="d-flex w-100 my-3">
+      <button mat-flat-button type="submit" form="regForm" color="primary" class="m-auto" [disabled]="!enabled">
+        <span> Registrarse </span>
+        <avisos-icon far icon="edit" class="ml-2"></avisos-icon>
+      </button>
+    </div>
+  </div>
+</div>

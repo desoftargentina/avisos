@@ -1,0 +1,12 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="h-100 px-2 slow-hide">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <button mat-button class="w-100 text-left" [routerLink]="node.url ? node.url : null" [queryParams]="node.params">
+      {{ node.name }}
+    </button>
+  </mat-tree-node>
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button mat-button matTreeNodeToggle class="w-100 text-left">
+      {{ node.name }}
+    </button>
+  </mat-tree-node>
+</mat-tree>

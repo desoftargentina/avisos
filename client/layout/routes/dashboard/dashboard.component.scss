@@ -1,0 +1,35 @@
+@import 'client/styles/app.scss';
+
+.myGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(12, minmax(100px, 1fr));
+  grid-row-gap: 2px;
+  grid-column-gap: 2px;
+}
+
+.myIcon { transition: none }
+
+@include expand-theme(background-color, background, background, '.myButton');
+@include expand-theme(background-color, primary, 300, '.myButton:hover');
+@include expand-theme(color, background, background, '.myButton:hover .myIcon');
+
+.myButton {
+  border-radius: 0px;
+  transition: background .5s;
+  &:hover .myIcon { transition: color 0s .08s }
+}
+
+@media (min-width: 576px) {
+  .myGrid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, minmax(100px, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .myGrid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, minmax(100px, 1fr));
+  }
+}

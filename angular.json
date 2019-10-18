@@ -31,33 +31,36 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "client",
       "prefix": "avisos",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/avisos",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/app",
+            "index": "client/config/index.html",
+            "main": "client/config/main.ts",
+            "polyfills": "client/config/polyfills.ts",
+            "tsConfig": "client/tsconfig.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "client/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+              "client/styles/app.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/hammerjs/hammer.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "client/config/environments/environment.ts",
+                  "with": "client/config/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,

@@ -1,0 +1,20 @@
+<div [formGroup]="categoryForm" class="d-flex">
+  <mat-form-field class="col pb-1">
+    <mat-label>Categoría</mat-label>
+    <mat-select formControlName="category" [required]="required">
+      <mat-option *ngFor="let categoryId of categoryKeys" [value]="categoryId">
+        {{getCategory(categoryId).name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Campo obligatorio.</mat-error>
+  </mat-form-field>
+  <mat-form-field class="col pb-1">
+    <mat-label>Subcategoría</mat-label>
+    <mat-select formControlName="subcategory" [required]="required">
+      <mat-option *ngFor="let subcategoryId of subcategoryKeys" [value]="subcategoryId">
+        {{getSubcategory(subcategoryId).name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Campo obligatorio.</mat-error>
+  </mat-form-field>
+</div>

@@ -1,0 +1,4 @@
+<div class="d-flex flex-wrap">
+    <show-image class="m-2" *ngFor="let data of files" [meta]="data" (tryDelete)="onDelete($event)"></show-image>
+    <add-image class="m-2" (fileEvent)="onFile($event)"></add-image>
+</div>

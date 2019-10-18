@@ -1,0 +1,52 @@
+@import 'client/styles/app.scss';
+
+@include expand-theme(background-color, background, card, '.holder .expand-card');
+
+.holder {
+  .expand-partner {
+    z-index: 2;
+  }
+
+  .expand-card {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 5em;
+    transition: width .8s, opacity .6s, border-radius .6s, box-shadow .55s, padding .8s;
+    z-index: 1;
+
+    .card-content {
+      display: flex;
+      min-width: 500%;
+      transition: min-width 1s;
+    }
+  }
+
+  &:hover .active {
+    width: 300%;
+    padding: .5em;
+    padding-left: calc(100% + .5em);
+    opacity: 1;
+    border-radius: 5em 2em 2em 5em;
+    transition: width 1s, opacity .3s, border-radius 1s, box-shadow .55s, padding .6s;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .card-content {
+      min-width: 100%;
+      transition: min-width 1.2s;
+    }
+  }
+
+
+  &.rtl {
+    direction: rtl;
+    &:hover .active {
+      padding-left: .5em;
+      padding-right: calc(100% + .5em);
+      border-radius: 2em 5em 5em 2em;
+    }
+  }
+}
